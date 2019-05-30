@@ -41,10 +41,6 @@ class CommentInputContainer extends React.Component<IProps, IState> {
     if (!comment) return
     if (!comment.username) return message.warning("请输入用户名")
     if (!comment.comment) return message.warning("请输入评论内容")
-    // const { comments } = this.props
-    // const newComments = [...comments, comment]
-    // localStorage.setItem('comments', JSON.stringify(newComments))
-    console.log('comment', comment)
     if (this.props.onSubmit) {
       this.props.onSubmit(comment)
     }

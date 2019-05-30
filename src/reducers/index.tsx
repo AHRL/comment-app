@@ -5,3 +5,4 @@ import comments from './comment'
 export default combineReducers({
   comments
 })
+// export default comments

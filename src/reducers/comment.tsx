@@ -6,9 +6,7 @@ interface IState {
   comments: CommentIncludeId[]
 }
 
-const comments = (state: IState, action: CommentAction): IState => {
-  console.log('state', state)
-  console.log('action', action)
+const comments = (state: IState = {comments: []}, action: CommentAction): IState => {
   switch (action.type) {
     case ADD_COMMENT:
       return {

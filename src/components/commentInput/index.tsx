@@ -21,6 +21,7 @@ interface IState {
 
 class CommentInput extends React.Component<IProp, IState>{
   private textareaRef: React.RefObject<any> = React.createRef()
+  private inputRef: React.RefObject<any> = React.createRef()
   
   constructor(props: any) {
     super(props)
@@ -31,7 +32,7 @@ class CommentInput extends React.Component<IProp, IState>{
   }
 
   componentDidMount = () => {
-    this.textareaRef.current.focus()
+    this.state.username ? this.textareaRef.current.focus() : this.textareaRef.current.focus()
   }
 
   handleUsernameBlur = (event: any) => {
@@ -67,7 +68,10 @@ class CommentInput extends React.Component<IProp, IState>{
     return (
       <div>
         <Input
+          value={this.props.username}
+          onBlur={this.handleUsernameBlur}
           onChange={this.handleUsernameChange}
+          ref={this.inputRef}
           placeholder="Enter your username"
           prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
         />
@@ -75,6 +79,7 @@ class CommentInput extends React.Component<IProp, IState>{
           style={{ margin: '20px 0' }}
           onChange={this.handleCommentChange}
           ref={this.textareaRef}
+          value={this.state.comment}
           placeholder="comment..."
           autosize={{ minRows: 2, maxRows: 6 }}
         />

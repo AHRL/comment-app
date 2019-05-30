@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Button, List } from 'antd'
+import { Button, List } from 'antd'
 import { CommentIncludeId } from '../../types'
 
 interface IProps {
@@ -16,28 +16,23 @@ class CommentList extends React.Component<IProps, {}> {
   }
 
   render() {
-    console.log('list', this.props.comments)
     return (
-      <div></div>
-      // <List
-      //   itemLayout="horizontal"
-      //   dataSource={this.props.comments}
-      //   renderItem={item => (
-      //     <div>
-      //       <List.Item>
-      //         <List.Item.Meta
-      //           title={item.username}
-      //           description={item.comment}
-      //         />
-      //       </List.Item>
-      //       <div>
-      //         <Button type="primary" onClick={() => {
-      //           this.handleDeleteComment(item.id)
-      //         }}>删除</Button>
-      //       </div>
-      //     </div>
-      //   )}
-      // />
+      <List
+        style={{marginTop: '50px'}}
+        className="demo-loadmore-list"
+        itemLayout="horizontal"
+        dataSource={this.props.comments}
+        renderItem={item => (
+          <List.Item actions={[<Button type="danger" onClick={() => {
+              this.handleDeleteComment(item.id)
+            }}>delete</Button>]}>
+            <List.Item.Meta
+              title={<span>{item.username}</span>}
+              description={item.comment}
+            />
+          </List.Item>
+        )}
+      />
     )
   }
 }

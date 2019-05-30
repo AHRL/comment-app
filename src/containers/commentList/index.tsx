@@ -10,8 +10,12 @@ interface IProps {
   deleteComment: (id: number) => void
 }
 
-interface IState {
+interface CommentState {
   comments: CommentIncludeId[]
+}
+
+interface AllStates {
+  comments: CommentState
 }
 
 class CommentListContainer extends React.Component<IProps, {}> {
@@ -24,16 +28,11 @@ class CommentListContainer extends React.Component<IProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState) => {
-  console.log('state.comments', state.comments)
+const mapStateToProps = (state: AllStates): CommentState => {
   return {
-    comments: state.comments
+    comments: state.comments.comments
   }
 }
-
-// ({
-//   comments: state.comments
-// })
 
 const mapDispatchToProps = (dispatch: Dispatch): { deleteComment: (id: number) => void } => ({
   deleteComment: (id: number) => dispatch(deleteComment(id))
