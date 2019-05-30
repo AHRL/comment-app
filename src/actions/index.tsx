@@ -18,13 +18,16 @@ export interface IDeleteCommentAction {
 
 export type CommentAction = IAddCommentAction | IDeleteCommentAction
 
-export const addComment = (comment: Comment): IAddCommentAction => ({
-  id: nextCommentId++,
-  username: comment.username,
-  comment: comment.comment,
-  createdTime: comment.createdTime,
-  type: ADD_COMMENT
-})
+export const addComment = (comment: Comment): IAddCommentAction => {
+  console.log('addComment', comment)
+  return {
+    id: nextCommentId++,
+    username: comment.username,
+    comment: comment.comment,
+    createdTime: comment.createdTime,
+    type: ADD_COMMENT
+  }
+}
 
 export const deleteComment = (id: number): IDeleteCommentAction => ({
   id,

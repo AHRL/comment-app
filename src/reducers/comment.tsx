@@ -2,8 +2,13 @@ import { CommentAction } from '../actions'
 import { ADD_COMMENT, DELETE_COMMENT } from '../constants'
 import { CommentIncludeId } from '../types'
 
-const comments = (state: {comments: CommentIncludeId[]} = {comments: []}, action: CommentAction) => {
+interface IState {
+  comments: CommentIncludeId[]
+}
+
+const comments = (state: IState, action: CommentAction): IState => {
   console.log('state', state)
+  console.log('action', action)
   switch (action.type) {
     case ADD_COMMENT:
       return {
@@ -19,11 +24,6 @@ const comments = (state: {comments: CommentIncludeId[]} = {comments: []}, action
       }
     case DELETE_COMMENT:
       let deleteIdx: number = 0
-      // state.forEach((com: {id: number}, idx: number) => {
-      //   if(com.id === action.id) {
-      //     deleteIdx = idx
-      //   }
-      // })
       for (let i = 0; i < state.comments.length; i++) {
         if (state.comments[i].id === action.id) {
           deleteIdx = i
